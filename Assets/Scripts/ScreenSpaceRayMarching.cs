@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [ExecuteInEditMode]
-[RequireComponent(typeof(Camera))]
+[RequireComponent(typeof (Camera))]
 public class ScreenSpaceRayMarching : MonoBehaviour
 {
     [Range(1, 1024)]
@@ -41,7 +41,7 @@ public class ScreenSpaceRayMarching : MonoBehaviour
     }
 
     private Camera m_Camera;
-    public Camera camera_
+    public new Camera camera
     {
         get
         {
@@ -77,7 +77,7 @@ public class ScreenSpaceRayMarching : MonoBehaviour
         enabled = false;
 #endif
 
-        camera_.depthTextureMode = DepthTextureMode.Depth;
+        camera.depthTextureMode = DepthTextureMode.Depth;
     }
 
     void OnDisable()
@@ -91,9 +91,9 @@ public class ScreenSpaceRayMarching : MonoBehaviour
 
     void OnPreCull()
     {
-        m_BackFaceDepthTexture = RenderTexture.GetTemporary(camera_.pixelWidth, camera_.pixelHeight, 16, RenderTextureFormat.RHalf);
+        m_BackFaceDepthTexture = RenderTexture.GetTemporary(camera.pixelWidth, camera.pixelHeight, 16, RenderTextureFormat.RHalf);
 
-        backFaceCamera.CopyFrom(camera_);
+        backFaceCamera.CopyFrom(camera);
         backFaceCamera.renderingPath = RenderingPath.Forward;
         backFaceCamera.enabled = false;
         backFaceCamera.SetReplacementShader(Shader.Find("Hidden/Back-face Depth Camera"), null);
@@ -122,11 +122,11 @@ public class ScreenSpaceRayMarching : MonoBehaviour
         screenSpaceProjectionMatrix.SetRow(2, new Vector4(0f, 0f, 1f, 0f));
         screenSpaceProjectionMatrix.SetRow(3, new Vector4(0f, 0f, 0f, 1f));
 
-        screenSpaceProjectionMatrix *= camera_.projectionMatrix;
+        screenSpaceProjectionMatrix *= camera.projectionMatrix;
 
-        material.SetMatrix("_ViewMatrix", camera_.worldToCameraMatrix);
-        material.SetMatrix("_InverseViewMatrix", camera_.worldToCameraMatrix.inverse);
-        material.SetMatrix("_ProjectionMatrix", camera_.projectionMatrix);
+        material.SetMatrix("_ViewMatrix", camera.worldToCameraMatrix);
+        material.SetMatrix("_InverseViewMatrix", camera.worldToCameraMatrix.inverse);
+        material.SetMatrix("_ProjectionMatrix", camera.projectionMatrix);
         material.SetMatrix("_ScreenSpaceProjectionMatrix", screenSpaceProjectionMatrix);
 
         Graphics.Blit(source, destination, material, 0);
