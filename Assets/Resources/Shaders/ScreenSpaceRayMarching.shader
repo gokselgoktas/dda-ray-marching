@@ -73,9 +73,7 @@
     {
         Varyings output;
 
-        float4 vertex = mul(UNITY_MATRIX_MVP, input.vertex);
-
-        output.vertex = vertex;
+        output.vertex = UnityObjectToClipPos(input.vertex);
         output.uv = input.uv;
 
     #if UNITY_UV_STARTS_AT_TOP

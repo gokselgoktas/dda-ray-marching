@@ -19,7 +19,7 @@
     {
         Varyings output;
 
-        output.vertex = mul(UNITY_MATRIX_MVP, input.vertex);
+        output.vertex = UnityObjectToClipPos(input.vertex);
         output.depth = -UnityObjectToViewPos(input.vertex).z * _ProjectionParams.w;
 
         return output;
