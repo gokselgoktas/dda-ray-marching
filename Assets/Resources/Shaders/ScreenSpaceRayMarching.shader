@@ -215,7 +215,7 @@
         return result;
     }
 
-    float4 process(in Varyings input) : SV_Target
+    float4 fragment(in Varyings input) : SV_Target
     {
         Ray ray;
 
@@ -253,7 +253,7 @@
             CGPROGRAM
             #pragma target 3.0
             #pragma vertex vertex
-            #pragma fragment process
+            #pragma fragment fragment
             ENDCG
         }
     }
