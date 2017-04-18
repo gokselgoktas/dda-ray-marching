@@ -3,7 +3,7 @@ using System.Collections;
 
 [ExecuteInEditMode]
 [RequireComponent(typeof (Camera))]
-public class ScreenSpaceRayMarching : MonoBehaviour
+public class DDARayMarching : MonoBehaviour
 {
     [Range(1, 1024)]
     public int maximumIterationCount = 20;
@@ -17,7 +17,7 @@ public class ScreenSpaceRayMarching : MonoBehaviour
         get
         {
             if (m_Shader == null)
-                m_Shader = Shader.Find("Hidden/Screen-space Ray Marching");
+                m_Shader = Shader.Find("Hidden/DDA Ray Marching");
 
             return m_Shader;
         }

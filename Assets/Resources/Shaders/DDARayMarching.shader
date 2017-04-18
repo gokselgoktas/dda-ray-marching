@@ -1,4 +1,4 @@
-﻿Shader "Hidden/Screen-space Ray Marching"
+﻿Shader "Hidden/DDA Ray Marching"
 {
     Properties
     {
